@@ -5,7 +5,7 @@ import { theory } from "./api/Theory";
 import { Utils } from "./api/Utils";
 
 var id = "my_custom_theory_id";
-var name = "My Custom Theory";
+var name = "My Custom Theory 1.0";
 var description = "A basic theory.";
 var authors = "Gilles-Philippe Paillé";
 var version = 1;
@@ -42,23 +42,23 @@ var init = () => {
 
     /////////////////////
     // Permanent Upgrades
-    theory.createPublicationUpgrade(0, currency, 1e10);
-    theory.createBuyAllUpgrade(1, currency, 1e13);
-    theory.createAutoBuyerUpgrade(2, currency, 1e30);
+    theory.createPublicationUpgrade(0, currency, 100000);
+    theory.createBuyAllUpgrade(1, currency, 1e10);
+    theory.createAutoBuyerUpgrade(2, currency, 1e15);
 
     ///////////////////////
     //// Milestone Upgrades
-    theory.setMilestoneCost(new LinearCost(25, 25));
+    theory.setMilestoneCost(new LinearCost(10, 10));
 
     {
-        c1Exp = theory.createMilestoneUpgrade(0, 3);
+        c1Exp = theory.createMilestoneUpgrade(0, 10);
         c1Exp.description = Localization.getUpgradeIncCustomExpDesc("c_1", "0.05");
         c1Exp.info = Localization.getUpgradeIncCustomExpInfo("c_1", "0.05");
         c1Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
     }
 
     {
-        c2Exp = theory.createMilestoneUpgrade(1, 3);
+        c2Exp = theory.createMilestoneUpgrade(0, 10);
         c2Exp.description = Localization.getUpgradeIncCustomExpDesc("c_2", "0.05");
         c2Exp.info = Localization.getUpgradeIncCustomExpInfo("c_2", "0.05");
         c2Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
@@ -94,12 +94,26 @@ var getPrimaryEquation = () => {
     if (c1Exp.level == 1) result += "^{1.05}";
     if (c1Exp.level == 2) result += "^{1.1}";
     if (c1Exp.level == 3) result += "^{1.15}";
+    if (c1Exp.level == 4) result += "^{1.2}";
+    if (c1Exp.level == 5) result += "^{1.25}";
+    if (c1Exp.level == 6) result += "^{1.3}";
+    if (c1Exp.level == 7) result += "^{1.35}";
+    if (c1Exp.level == 8) result += "^{1.4}";
+    if (c1Exp.level == 9) result += "^{1.45}";
+    if (c1Exp.level == 10) result += "^{1.5}";
 
     result += "c_2";
 
     if (c2Exp.level == 1) result += "^{1.05}";
     if (c2Exp.level == 2) result += "^{1.1}";
     if (c2Exp.level == 3) result += "^{1.15}";
+    if (c2Exp.level == 4) result += "^{1.2}";
+    if (c2Exp.level == 5) result += "^{1.25}";
+    if (c2Exp.level == 6) result += "^{1.3}";
+    if (c2Exp.level == 7) result += "^{1.35}";
+    if (c2Exp.level == 8) result += "^{1.4}";
+    if (c2Exp.level == 9) result += "^{1.45}";
+    if (c2Exp.level == 10) result += "^{1.5}";
 
     return result;
 }
