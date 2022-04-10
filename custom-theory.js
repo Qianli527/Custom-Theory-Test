@@ -51,14 +51,14 @@ var init = () => {
     theory.setMilestoneCost(new LinearCost(10, 10));
 
     {
-        c1Exp = theory.createMilestoneUpgrade(0, 10);
+        c1Exp = theory.createMilestoneUpgrade(0, 5);
         c1Exp.description = Localization.getUpgradeIncCustomExpDesc("c_1", "0.05");
         c1Exp.info = Localization.getUpgradeIncCustomExpInfo("c_1", "0.05");
         c1Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
     }
 
     {
-        c2Exp = theory.createMilestoneUpgrade(1, 10);
+        c2Exp = theory.createMilestoneUpgrade(1, 5);
         c2Exp.description = Localization.getUpgradeIncCustomExpDesc("c_2", "0.05");
         c2Exp.info = Localization.getUpgradeIncCustomExpInfo("c_2", "0.05");
         c2Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
@@ -119,8 +119,8 @@ var getPrimaryEquation = () => {
 }
 
 var getSecondaryEquation = () => theory.latexSymbol + "=\\max\\rho";
-var getPublicationMultiplier = (tau) => tau.pow(0.8) / BigNumber.THREE;
-var getPublicationMultiplierFormula = (symbol) => "\\frac{{" + symbol + "}^{0.8}}{3}";
+var getPublicationMultiplier = (tau) => tau.pow(0.5) / BigNumber.THREE;
+var getPublicationMultiplierFormula = (symbol) => "\\frac{{" + symbol + "}^{0.5}}{3}";
 var getTau = () => currency.value;
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();
 
