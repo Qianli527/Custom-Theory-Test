@@ -40,7 +40,6 @@ var init = () => {
         t = theory.createUpgrade(0, currency, new ExponentialCost(1e10, Math.log2(1e15)));
         t.getDescription = (amount) => Utils.getMath(getDesc(t.level));
         t.getInfo = (amount) => Utils.getMathTo(getInfo(t.level), getInfo(t.level + amount));
-        t.maxLevel=4;
     }
 
     // c1
@@ -104,7 +103,7 @@ var init = () => {
 
     /////////////////////
     // Permanent Upgrades
-    theory.createPublicationUpgrade(0, currency, 1e8);
+    theory.createPublicationUpgrade(0, currency, 10);
     theory.createBuyAllUpgrade(1, currency, 1e15);
     theory.createAutoBuyerUpgrade(2, currency, 1e25);
 
@@ -285,8 +284,8 @@ var getQ1 = (num_Obj) => {
 var getQ2 = (vA,vB,vC,vD) => factorial(vA + vB + vC + vD)/(factorial(vA)*factorial(vB)*factorial(vC)*factorial(vD));
 
 
-var getPublicationMultiplier = (tau) => tau.isZero ? BigNumber.ONE : tau;
-var getPublicationMultiplierFormula = (symbol) => "{" + symbol + "}";
+var getPublicationMultiplier = (tau) => tau.pow(1) / BigNumber.THREE;
+var getPublicationMultiplierFormula = (symbol) => "{" + symbol + "}^{1}}{3}";
 var getTau = () => currency.value.pow(BigNumber.from(1));
 var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(10), currency.symbol];
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();
