@@ -284,8 +284,8 @@ var getQ1 = (num_Obj) => {
 var getQ2 = (vA,vB,vC,vD) => factorial(vA + vB + vC + vD)/(factorial(vA)*factorial(vB)*factorial(vC)*factorial(vD));
 
 
-var getPublicationMultiplier = (tau) => tau.pow(1) / BigNumber.THREE;
-var getPublicationMultiplierFormula = (symbol) => "\\frac{{" + symbol + "}^{1}}{3}";
+var getPublicationMultiplier = (tau) => tau.pow(1);
+var getPublicationMultiplierFormula = (symbol) => "{" + symbol + "}^{1}";
 var getTau = () => currency.value.pow(BigNumber.from(1));
 var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(10), currency.symbol];
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();
